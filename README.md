@@ -111,15 +111,34 @@ v1.0 — Basic Analyzer
 • Single file analysis  
 • Basic LLM integration  
 
+
+<img width="1902" height="713" alt="v1 OUTPUT" src="https://github.com/user-attachments/assets/4c13f74e-dd76-4ea8-8b94-6a2eb43cce49" />
+
+
+
 v2.0 — Autonomous Analyzer  
 • Multi-file scanning  
 • Automated report generation  
+
+
+<img width="995" height="242" alt="v2OUTPUT" src="https://github.com/user-attachments/assets/d38538bd-63c7-4e84-a399-54e78c79344f" />
+
+<img width="1903" height="873" alt="v2OUTPUT2" src="https://github.com/user-attachments/assets/7d1863a7-1dc2-4d15-9899-54d0b3a77e2a" />
+
+
+
 
 v3.0 — AI Security Engine  
 • Vulnerability classification  
 • Severity scoring  
 • CLI support  
 • Professional reporting  
+
+<img width="1350" height="145" alt="v3OUTPUT" src="https://github.com/user-attachments/assets/3774fb30-c92e-4837-be42-a2411d8a5e8b" />
+
+<img width="784" height="492" alt="v3output2" src="https://github.com/user-attachments/assets/63449f2a-48bd-467b-8fd5-a520c82fa5a4" />
+
+
 
 ---
 
