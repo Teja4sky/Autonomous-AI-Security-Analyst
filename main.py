@@ -1,53 +1,53 @@
+import argparse
 from core.file_scanner import scan_directory
 from core.analyzer import analyze_code
 from core.report_writer import save_report
 
+def read_file(path):
 
-def read_file(file_path: str):
-
-    try:
-        with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
-            return file.read()
-
-    except Exception as e:
-        print(f"Error reading file {file_path}: {e}")
-        return ""
-
+    with open(path, "r", encoding="utf-8", errors="ignore") as f:
+        return f.read()
 
 def main():
 
-    target_directory = "samples"
+    parser = argparse.ArgumentParser()
 
-    print(f"\nScanning directory: {target_directory}")
+    parser.add_argument("--scan", help="Scan directory")
+    parser.add_argument("--file", help="Scan single file")
 
-    files = scan_directory(target_directory)
-
-    if not files:
-        print("No supported files found.")
-        return
-
-    print(f"Found {len(files)} files\n")
+    args = parser.parse_args()
 
     results = []
 
-    for file in files:
+    if args.scan:
 
-        print(f"Analyzing: {file}")
+        files = scan_directory(args.scan)
 
-        code = read_file(file)
+        for file in files:
 
-        if code.strip() == "":
-            continue
+            print(f"Analyzing {file}")
 
-        analysis = analyze_code(code, file)
+            code = read_file(file)
 
-        results.append(analysis)
+            results.append(analyze_code(code, file))
 
-    report_path = save_report(results)
+    elif args.file:
 
-    print("\nAnalysis Complete")
-    print(f"Report saved at: {report_path}")
+        code = read_file(args.file)
 
+        results.append(analyze_code(code, args.file))
+
+    else:
+
+        print("Use --scan or --file")
+
+        return
+
+    txt, json = save_report(results)
+
+    print("\nReport saved:")
+    print(txt)
+    print(json)
 
 if __name__ == "__main__":
     main()

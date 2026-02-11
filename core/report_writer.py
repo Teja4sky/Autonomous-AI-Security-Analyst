@@ -1,39 +1,48 @@
 import os
+import json
 from datetime import datetime
 
 REPORT_DIR = "reports"
 
-def save_report(results: list):
+def save_report(results):
 
     os.makedirs(REPORT_DIR, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    report_path = os.path.join(
-        REPORT_DIR,
-        f"security_report_{timestamp}.txt"
-    )
+    txt_path = os.path.join(REPORT_DIR, f"report_{timestamp}.txt")
+    json_path = os.path.join(REPORT_DIR, f"report_{timestamp}.json")
 
-    with open(report_path, "w", encoding="utf-8") as file:
+    critical = high = medium = low = 0
 
-        file.write("=" * 60 + "\n")
-        file.write("AUTONOMOUS AI SECURITY ANALYST REPORT\n")
-        file.write("=" * 60 + "\n\n")
+    with open(txt_path, "w", encoding="utf-8") as f:
 
-        file.write(f"Generated on: {datetime.now()}\n")
-        file.write(f"Total files analyzed: {len(results)}\n\n")
+        f.write("AI SECURITY ANALYSIS REPORT\n\n")
 
-        for index, result in enumerate(results, start=1):
+        for result in results:
 
-            file.write("=" * 60 + "\n")
-            file.write(f"FILE {index}: {result['file']}\n")
-            file.write("=" * 60 + "\n\n")
+            f.write(f"File: {result['file']}\n")
+            f.write(f"Type: {result['vulnerability_type']}\n")
+            f.write(f"Severity: {result['severity']}\n")
+            f.write(f"Score: {result['score']}\n")
+            f.write("-" * 50 + "\n")
 
-            file.write(result["analysis"])
-            file.write("\n\n")
+            if result["severity"] == "Critical":
+                critical += 1
+            elif result["severity"] == "High":
+                high += 1
+            elif result["severity"] == "Medium":
+                medium += 1
+            elif result["severity"] == "Low":
+                low += 1
 
-        file.write("=" * 60 + "\n")
-        file.write("END OF REPORT\n")
-        file.write("=" * 60 + "\n")
+        f.write("\nSUMMARY\n")
+        f.write(f"Critical: {critical}\n")
+        f.write(f"High: {high}\n")
+        f.write(f"Medium: {medium}\n")
+        f.write(f"Low: {low}\n")
 
-    return report_path
+    with open(json_path, "w", encoding="utf-8") as jf:
+        json.dump(results, jf, indent=4)
+
+    return txt_path, json_path

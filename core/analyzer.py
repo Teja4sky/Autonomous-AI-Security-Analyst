@@ -1,20 +1,16 @@
 from core.llm_engine import query_llm
+from core.classifier import classify_vulnerability
+from core.scorer import calculate_score
 
-def analyze_code(code: str, filename: str) -> dict:
+def analyze_code(code: str, filename: str):
 
     prompt = f"""
-You are an expert cybersecurity analyst.
+You are a cybersecurity expert.
 
-Analyze the following source code file and identify all security vulnerabilities.
+Analyze the following code and identify vulnerabilities.
 
-Provide structured output:
-
-Vulnerabilities Found:
-Severity:
-Explanation:
-Recommended Fix:
-
-File Name: {filename}
+Include severity level (Critical/High/Medium/Low),
+explanation, and fix.
 
 Code:
 {code}
@@ -22,8 +18,20 @@ Code:
 
     response = query_llm(prompt)
 
+    vulnerability_type = classify_vulnerability(response)
+
+    severity, score = calculate_score(response)
+
     result = {
+
         "file": filename,
+
+        "vulnerability_type": vulnerability_type,
+
+        "severity": severity,
+
+        "score": score,
+
         "analysis": response
     }
 

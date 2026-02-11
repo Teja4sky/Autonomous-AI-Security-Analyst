@@ -1,0 +1,13 @@
+AI SECURITY ANALYSIS REPORT
+
+File: samples/test_code.c
+Type: Buffer Overflow
+Severity: Critical
+Score: 9.0
+--------------------------------------------------
+
+SUMMARY
+Critical: 1
+High: 0
+Medium: 0
+Low: 0
