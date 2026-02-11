@@ -1,0 +1,10 @@
+# Version 1 Requirements
+# Autonomous Local AI Security Analyst (Basic Version)
+
+# No external Python dependencies required.
+# This project uses:
+# - Python standard library
+# - Ollama (installed separately)
+
+# Install Ollama from:
+# https://ollama.com/download
