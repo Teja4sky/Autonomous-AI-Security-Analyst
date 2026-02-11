@@ -1,13 +1,158 @@
 # Autonomous AI Security Analyst
 
-Autonomous Local AI Security Analyst powered by Dolphin LLM.
+Autonomous AI Security Analyst is a fully local AI-powered vulnerability detection system that analyzes source code, identifies security vulnerabilities, classifies risk levels, and generates professional security reports using a local Large Language Model (Dolphin LLM via Ollama).
 
-Features:
-- Autonomous vulnerability detection
-- Multi-file scanning
-- Professional security report generation
-- Fully offline operation using local LLM
+This system works completely offline and demonstrates real-world AI security engineering architecture.
 
-Version:
-- v1.0 Basic Analyzer
-- v2.0 Autonomous Analyzer
+---
+
+## Key Features
+
+• Autonomous vulnerability detection using local LLM  
+• Vulnerability classification (Buffer Overflow, Injection, XSS, etc.)  
+• Severity scoring system (Critical, High, Medium, Low)  
+• Multi-file and folder scanning  
+• Professional report generation (TXT and JSON)  
+• Fully offline operation  
+• Modular and production-style architecture  
+• CLI-based security scanning tool  
+
+---
+
+## Architecture
+User Input
+↓
+File Scanner
+↓
+Code Analyzer
+↓
+Dolphin LLM (Ollama)
+↓
+Vulnerability Classifier
+↓
+Severity Scorer
+↓
+Report Generator
+↓
+Security Report Output
+
+
+---
+
+## Project Structure
+
+```
+Autonomous-AI-Security-Analyst/
+│
+├── core/
+│   ├── analyzer.py          # Main AI code analysis engine
+│   ├── classifier.py        # Vulnerability classification module
+│   ├── scorer.py            # Severity scoring system
+│   ├── file_scanner.py      # Scans directories and finds source files
+│   ├── report_writer.py     # Generates security reports
+│   └── llm_engine.py        # Handles Dolphin LLM interaction
+│
+├── samples/                 # Sample vulnerable code files for testing
+│
+├── reports/                 # Generated security report
+│
+├── main.py                  # Main entry point (CLI controller)
+│
+├── requirements.txt         # Python dependencies
+│
+├── README.md                # Project documentation
+│
+└── LICENSE                  # MIT License
+```
+
+---
+## Installation
+
+Install Ollama:
+
+https://ollama.com/download
+
+Pull Dolphin model: ollama pull dolphin-mistral:7b
+
+
+Clone repository:
+
+git clone https://github.com/Teja4sky/Autonomous-AI-Security-Analyst.git
+
+cd Autonomous-AI-Security-Analyst
+
+
+---
+
+## Usage
+
+Scan folder:
+
+ python main.py --scan samples
+
+Scan single file: python main.py --file samples/test_code.c
+
+
+---
+
+## Example Output
+ File: test_code.c
+Vulnerability: Buffer Overflow
+Severity: Critical
+Score: 9.0
+Fix: Replace gets() with fgets()
+
+
+---
+
+## Version History
+
+v1.0 — Basic Analyzer  
+• Single file analysis  
+• Basic LLM integration  
+
+v2.0 — Autonomous Analyzer  
+• Multi-file scanning  
+• Automated report generation  
+
+v3.0 — AI Security Engine  
+• Vulnerability classification  
+• Severity scoring  
+• CLI support  
+• Professional reporting  
+
+---
+
+## Technologies Used
+
+Python  
+Large Language Models (LLM)  
+Ollama  
+Dolphin LLM  
+Cybersecurity Analysis  
+AI Security Engineering  
+
+---
+
+## Use Cases
+
+• AI Security Research  
+• Vulnerability Analysis  
+• Secure Code Review  
+• AI Security Engineering Projects  
+• Educational and Research purposes  
+
+---
+
+## Author
+
+Teja Surya  
+AI / ML Engineer | Cybersecurity Enthusiast
+
+GitHub: https://github.com/Teja4sky
+
+---
+
+## License
+
+MIT License
